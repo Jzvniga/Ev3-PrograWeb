@@ -18,6 +18,7 @@ const LoginPage = () => {
       const data = await loginService(email, password);
       console.log(data);
       
+      console.log("Datos recibidos del backend:", data);
       login(data); // guarda en contexto
 
       console.log("ROL:", data.role); 

@@ -14,6 +14,7 @@ import CrearLibroPage from './pages/admin/CrearLibroPage';
 import PrestamoPage from './pages/admin/PrestamoPage';
 import DevolucionPage from './pages/admin/DevolucionPage';
 import BuscarLectorPage from './pages/admin/BuscarLectorPage';
+import MultasPorLectorPage from './pages/admin/MultasPorLectorPage';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
@@ -27,7 +28,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+   
 
         {/* Lector */}
         <Route path="/lector/libros" element={
@@ -47,6 +48,11 @@ function App() {
         } />
 
         {/* Admin */}
+        <Route path="/register" element={
+          <ProtectedRoute role="ADMIN">
+            <RegisterPage />
+          </ProtectedRoute>
+        } />
         <Route path="/admin/crear-libro" element={
           <ProtectedRoute role="ADMIN">
             <CrearLibroPage />
@@ -67,6 +73,11 @@ function App() {
             <BuscarLectorPage />
           </ProtectedRoute>
         } />
+        <Route path="/admin/multas-por-lector" element={
+        <ProtectedRoute role="ADMIN">
+          <MultasPorLectorPage />
+        </ProtectedRoute>
+      } />
       </Routes>
     </Router>
   );

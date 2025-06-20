@@ -1,15 +1,15 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8087/book/new'; 
 
-
-export const crearLibro = async (libroData, token) => {
-  const response = await axios.post(API_URL, libroData, {
+export const crearLibro = async (formData, token) => {
+  const response = await axios.post('http://localhost:8087/book/new', formData, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'multipart/form-data'
     },
     withCredentials: true
   });
+
   return response.data;
 };
 
@@ -22,4 +22,14 @@ export const getLibros = async (token) => {
   });
   return response.data;
 };
+
+export const buscarLibroPorTitulo = async (titulo, token) => {
+  const response = await axios.get(`http://localhost:8087/book/find/${titulo}`, {
+    headers: { Authorization: `Bearer ${token}` },
+    withCredentials: true
+  });
+  return response.data;
+};
+
+
 
