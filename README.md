@@ -76,28 +76,8 @@ Se protegen las vistas según el rol:
 Acceso por URL directa restringido. Si no tienes rol válido, se redirige al login.
 
 📁 Estructura de Carpetas
-css
-Copiar
-Editar
-src/
-├── components/
-│   ├── Navbar.jsx
-│   ├── BookCard.jsx
-│   └── ...
-├── pages/
-│   ├── LoginPage.jsx
-│   ├── RegisterPage.jsx
-│   ├── HomePage.jsx
-│   ├── AdminDashboard.jsx
-│   └── LectorDashboard.jsx
-├── services/
-│   ├── authService.js
-│   ├── bookService.js
-│   └── bookingService.js
-├── App.jsx
-└── main.jsx
 
-
+![image](https://github.com/user-attachments/assets/29c937a5-5020-43b8-bf07-8115c03c1af6)
 
 
 🧪 Casos de Prueba y Validación Manual
