@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMisMultas } from '../../services/fineService';
-import { AlertTriangle } from 'lucide-react';
 import { jwtDecode } from 'jwt-decode';
+import './MultasPage.css';
 
 const MultasPage = () => {
   const [multas, setMultas] = useState([]);
@@ -18,7 +18,6 @@ const MultasPage = () => {
           const decoded = jwtDecode(token);
           email = decoded.sub;
         } catch (err) {
-          console.error('Error al decodificar token:', err);
           setError('Token inválido');
           return;
         }
@@ -33,8 +32,7 @@ const MultasPage = () => {
         const data = await getMisMultas(email, token);
         setMultas(data);
       } catch (err) {
-        console.error(err);
-        setError('Error al obtener tus multas');
+        setError('Error al obtener multas');
       }
     };
 
@@ -42,21 +40,30 @@ const MultasPage = () => {
   }, []);
 
   return (
-    <div>
-      <h2>📄 Mis Multas</h2>
-      {error && (
-        <p style={{ color: 'red', display: 'flex', alignItems: 'center', gap: '6px' }}>
-          <AlertTriangle color="red" />
-          {error}
-        </p>
-      )}
-      <ul>
-        {multas.map((multa) => (
-          <li key={multa.id}>
-            💰 {multa.descripcion} — {multa.monto} CLP {multa.estado ? '(Activa)' : '(Pagada)'}
-          </li>
-        ))}
-      </ul>
+    <div className="multas-container">
+      <h2 className="titulo-multas">📄 Mis Multas</h2>
+      {error && <p className="error">{error}</p>}
+      <div className="tabla-wrapper">
+        <table className="tabla-multas">
+          <thead>
+            <tr>
+              <th>Descripción</th>
+              <th>Monto</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {multas.map((multa) => (
+              <tr key={multa.id}>
+                <td>{multa.descripcion}</td>
+                <td>{multa.monto.toLocaleString()} CLP</td>
+                <td>{multa.estado ? 'Activa' : 'Pagada'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {multas.length === 0 && !error && <p className="sin-multas">No tienes multas activas</p>}
+      </div>
     </div>
   );
 };

@@ -1,0 +1,43 @@
+.navbar {
+  background-color: #1c2237;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.navbar .brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar .brand span {
+  color: #ff6347;
+}
+
+.navbar-links a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+.navbar-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-user button {
+  background: transparent;
+  color: white;
+  border: 1px solid white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navbar-user span {
+  font-size: 0.95rem;
+}

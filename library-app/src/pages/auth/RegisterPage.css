@@ -1,0 +1,73 @@
+.register-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.titulo-registro {
+  font-size: 24px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #1a1a1a;
+}
+
+.formulario .campo {
+  margin-bottom: 1.2rem;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.campo input,
+.campo select {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+
+.campo input:focus,
+.campo select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn-registrar {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background-color: #ff5e57;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-registrar:hover {
+  background-color: #e14d48;
+}
+
+.mensaje-exito {
+  color: #008000;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.mensaje-error {
+  color: #cc0000;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: bold;
+}

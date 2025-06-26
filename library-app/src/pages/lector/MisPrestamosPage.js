@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getMisPrestamos } from '../../services/bookingService';
+import './MisPrestamosPage.css';
 
 const MisPrestamosPage = () => {
   const [prestamos, setPrestamos] = useState([]);
@@ -27,29 +28,45 @@ const MisPrestamosPage = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Mis Préstamos</h2>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      <ul style={{ listStyle: 'none', padding: 0 }}>
-        {prestamos.map((p) => (
-          <li
-            key={p.id}
-            style={{
-              marginBottom: '1.5rem',
-              padding: '1rem',
-              border: '1px solid #ccc',
-              borderRadius: '8px',
-              backgroundColor: p.estado ? '#ffffff' : '#f0f0f0',
-              opacity: p.estado ? 1 : 0.6,
-            }}
-          >
-            📚 <strong>{p.bookCopy?.book?.title || 'Título no disponible'}</strong><br />
-            📅 Fecha de préstamo: {p.fechaInicio || 'No disponible'}<br />
-            📅 Fecha devolución: {p.estado ? 'No devuelto' : (p.fechaFin || 'Devuelto')}<br />
-            🔄 Estado: {p.estado ? 'En préstamo' : 'Devuelto'}
-          </li>
-        ))}
-      </ul>
+    <div className="prestamos-container">
+      <h2 className="prestamos-title">Mis Préstamos</h2>
+      {error && <p className="error-message">{error}</p>}
+      <table className="prestamos-table">
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Fecha Préstamo</th>
+            <th>Fecha Devolución</th>
+          </tr>
+        </thead>
+        <tbody>
+          {prestamos.map((p) => (
+            <tr key={p.id} className={!p.estado ? 'prestamo-devuelto' : ''}>
+              <td>
+                {p.bookCopy?.book?.image ? (
+                  <img
+                    src={`data:image/jpeg;base64,${p.bookCopy.book.image}`}
+                    alt="cover"
+                    className="cover-image"
+                  />
+                ) : (
+                  <span className="no-image">Sin imagen</span>
+                )}
+              </td>
+              <td>{p.bookCopy?.book?.title || 'Desconocido'}</td>
+              <td>{p.bookCopy?.book?.author || 'Desconocido'}</td>
+              <td>{p.bookCopy?.book?.type || '-'}</td>
+              <td>{p.estado ? 'En préstamo' : 'Devuelto'}</td>
+              <td>{p.fechaInicio || '-'}</td>
+              <td>{p.estado ? 'No devuelto' : p.fechaFin || '-'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import AuthContext from '../../context/AuthContext';
+import './RegisterPage.css';
 
 const RegisterPage = () => {
   const [email, setEmail] = useState('');
@@ -26,24 +27,17 @@ const RegisterPage = () => {
       return;
     }
 
-    const token = user.token;
-
     try {
-      console.log("Registrando con rol:", role); // Debug opcional
-      await axios.post('http://localhost:8087/auth/register', {
-        email,
-        password,
-        roles: [role]
-      }, {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      await axios.post(
+        'http://localhost:8087/auth/register',
+        { email, password, roles: [role] },
+        { headers: { Authorization: `Bearer ${user.token}` } }
+      );
 
       setMensaje('✅ Usuario creado exitosamente');
       setEmail('');
       setPassword('');
-      setRole(''); // ahora se limpia bien sin forzar LECTOR por defecto
+      setRole('');
     } catch (err) {
       console.error(err);
       setError('❌ Error al registrar el usuario');
@@ -51,44 +45,30 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <h2>Registrar nuevo usuario</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
+    <div className="register-container">
+      <h2 className="titulo-registro">Registrar nuevo usuario</h2>
+      <form className="formulario" onSubmit={handleSubmit}>
+        <div className="campo">
           <label>Email:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <input type="email" value={email} onChange={e => setEmail(e.target.value)} required />
         </div>
-        <div>
+        <div className="campo">
           <label>Contraseña:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" value={password} onChange={e => setPassword(e.target.value)} required />
         </div>
-        <div>
+        <div className="campo">
           <label>Rol:</label>
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            required
-          >
+          <select value={role} onChange={e => setRole(e.target.value)} required>
             <option value="" disabled>Selecciona un rol</option>
             <option value="LECTOR">LECTOR</option>
             <option value="ADMIN">ADMIN</option>
           </select>
         </div>
-        <button type="submit">Registrar</button>
+        <button type="submit" className="btn-registrar">Registrar</button>
       </form>
 
-      {mensaje && <p style={{ color: 'green' }}>{mensaje}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {mensaje && <p className="mensaje-exito">{mensaje}</p>}
+      {error && <p className="mensaje-error">{error}</p>}
     </div>
   );
 };

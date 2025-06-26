@@ -1,0 +1,71 @@
+.prestamo-container {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.prestamo-container h2 {
+  font-size: 26px;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.prestamo-form {
+  margin-bottom: 1.5rem;
+}
+
+.prestamo-form label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.prestamo-form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.2rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.prestamo-form button {
+  padding: 0.6rem 1.2rem;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.prestamo-form button:hover {
+  background-color: #005fa3;
+}
+
+.prestamo-copias ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+}
+
+.prestamo-copias li {
+  margin-bottom: 0.8rem;
+}
+
+.mensaje-success {
+  margin-top: 1rem;
+  color: green;
+  font-weight: bold;
+}
+
+.mensaje-error {
+  margin-top: 1rem;
+  color: red;
+  font-weight: bold;
+}

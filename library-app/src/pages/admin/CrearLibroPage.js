@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { crearLibro, buscarLibroPorTitulo } from '../../services/bookService';
 import { crearCopiaDeLibro } from '../../services/bookCopyService';
 import AuthContext from '../../context/AuthContext';
+import './CrearLibroPage.css';
 
 const CrearLibroPage = () => {
   const { user } = useContext(AuthContext);
@@ -53,9 +54,9 @@ const CrearLibroPage = () => {
   };
 
   return (
-    <div style={{ display: 'flex', gap: '2rem' }}>
-      {/* Crear libro */}
-      <div>
+    <div className="crear-libro-container">
+      {/* Sección izquierda: Crear Libro */}
+      <div className="formulario-libro">
         <h2>Nuevo Libro</h2>
         <form onSubmit={handleSubmit}>
           <input type="text" value={title} onChange={e => setTitle(e.target.value)} placeholder="Título" required />
@@ -64,22 +65,24 @@ const CrearLibroPage = () => {
           <input type="file" accept="image/*" onChange={e => setImage(e.target.files[0])} required />
           <button type="submit">Crear</button>
         </form>
-        {mensaje && <p>{mensaje}</p>}
+        {mensaje && <p className="mensaje">{mensaje}</p>}
       </div>
 
-      {/* Crear copia */}
-      <div>
+      {/* Sección derecha: Crear Copia */}
+      <div className="formulario-copia">
         <h2>Nueva Copia</h2>
-        <input
-          type="text"
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-          placeholder="Título exacto"
-        />
-        <button onClick={handleBuscar}>Buscar</button>
-        <button onClick={handleCrearCopia}>Crear</button>
+        <div className="busqueda-copia">
+          <input
+            type="text"
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+            placeholder="Título exacto"
+          />
+          <button onClick={handleBuscar}>Buscar</button>
+          <button onClick={handleCrearCopia}>Crear</button>
+        </div>
 
-        <ul style={{ listStyle: 'none', marginTop: '1rem' }}>
+        <ul className="resultado-lista">
           {resultados.map((libro) => (
             <li key={libro.id}>
               <input
@@ -88,7 +91,7 @@ const CrearLibroPage = () => {
                 value={libro.id}
                 onChange={() => setLibroSeleccionado(libro.id)}
               />
-              Libro #{libro.id}. {libro.title} – {libro.author} – {libro.type}
+              <span>Libro #{libro.id}. {libro.title} – {libro.author} – {libro.type}</span>
             </li>
           ))}
         </ul>

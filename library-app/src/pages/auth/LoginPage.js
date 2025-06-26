@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 import loginService from '../../services/LoginService';
-
+import './LoginPage.css';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -16,40 +16,46 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const data = await loginService(email, password);
-      console.log(data);
-      
-      console.log("Datos recibidos del backend:", data);
-      login(data); // guarda en contexto
+      login(data);
 
-      console.log("ROL:", data.role); 
-
-    if (data.role === 'ADMIN') {
-      navigate('/admin/crear-libro');
-    } else if (data.role === 'LECTOR') {
-      navigate('/lector/libros');
-    } else {
-      navigate('/');
-    }
+      if (data.role === 'ADMIN') {
+        navigate('/admin/crear-libro');
+      } else if (data.role === 'LECTOR') {
+        navigate('/lector/libros');
+      } else {
+        navigate('/');
+      }
     } catch (err) {
       console.error(err);
-      setError('Credenciales incorrectas');
+      setError('❌ Credenciales incorrectas. Intenta nuevamente.');
     }
   };
 
   return (
-    <div>
-      <h2>Iniciar Sesión</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div>
-          <label>Contraseña:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
+    <div className="login-container">
+      <h2 className="login-title">Iniciar Sesión</h2>
+      <form onSubmit={handleSubmit} className="login-form">
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder="ejemplo@correo.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+
+        <label>Contraseña</label>
+        <input
+          type="password"
+          placeholder="••••••••"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+
         <button type="submit">Ingresar</button>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+
+        {error && <p className="error-message">{error}</p>}
       </form>
     </div>
   );

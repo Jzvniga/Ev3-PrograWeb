@@ -5,8 +5,8 @@ import HomePage from './pages/general/HomePage';
 import AboutPage from './pages/general/AboutPage';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import RegisterLectorPage from './pages/auth/RegisterLectorPage';
 
-import LibrosPage from './pages/lector/LibrosPage';
 import MisPrestamosPage from './pages/lector/MisPrestamosPage';
 import MultasPage from './pages/lector/MultasPage';
 
@@ -14,7 +14,6 @@ import CrearLibroPage from './pages/admin/CrearLibroPage';
 import PrestamoPage from './pages/admin/PrestamoPage';
 import DevolucionPage from './pages/admin/DevolucionPage';
 import BuscarLectorPage from './pages/admin/BuscarLectorPage';
-import MultasPorLectorPage from './pages/admin/MultasPorLectorPage';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
@@ -28,14 +27,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register-lector" element={<RegisterLectorPage />} />
    
 
         {/* Lector */}
-        <Route path="/lector/libros" element={
-          <ProtectedRoute role="LECTOR">
-            <LibrosPage />
-          </ProtectedRoute>
-        } />
         <Route path="/lector/prestamos" element={
           <ProtectedRoute role="LECTOR">
             <MisPrestamosPage />
@@ -73,11 +68,6 @@ function App() {
             <BuscarLectorPage />
           </ProtectedRoute>
         } />
-        <Route path="/admin/multas-por-lector" element={
-        <ProtectedRoute role="ADMIN">
-          <MultasPorLectorPage />
-        </ProtectedRoute>
-      } />
       </Routes>
     </Router>
   );

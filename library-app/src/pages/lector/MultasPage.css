@@ -1,0 +1,58 @@
+.multas-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.titulo-multas {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.tabla-wrapper {
+  overflow-x: auto;
+}
+
+.tabla-multas {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tabla-multas thead {
+  background-color: #f4f4f4;
+  text-align: left;
+}
+
+.tabla-multas th, .tabla-multas td {
+  padding: 14px 18px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-multas td {
+  color: #333;
+}
+
+.tabla-multas tr:hover {
+  background-color: #f9f9f9;
+}
+
+.error {
+  color: #b30000;
+  background-color: #ffe0e0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+
+.sin-multas {
+  text-align: center;
+  color: #666;
+  margin-top: 1rem;
+}

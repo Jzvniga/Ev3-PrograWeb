@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { buscarPrestamosPorEmail, devolverPrestamo } from '../../services/bookingService';
+import './DevolucionPage.css';
 
 const DevolucionPage = () => {
   const [email, setEmail] = useState('');
@@ -50,36 +51,64 @@ const DevolucionPage = () => {
   };
 
   return (
-    <div>
-      <h2>Devolución</h2>
+    <div className="devolucion-container">
+      <h2>Gestión de Devolución</h2>
 
-      <input
-        type="email"
-        placeholder="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button onClick={handleBuscar}>Buscar</button>
-      <button onClick={handleDevolucion}>Devolución</button>
+      <div className="devolucion-form">
+        <label>Email del lector:</label>
+        <input
+          type="email"
+          placeholder="ejemplo@correo.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <div className="button-row">
+          <button onClick={handleBuscar}>Buscar</button>
+          <button onClick={handleDevolucion} className="devolver-btn">Devolver</button>
+        </div>
+      </div>
 
-      <ul style={{ marginTop: '1rem', listStyle: 'none' }}>
-        {prestamos.map((p) => (
-          <li key={p.id}>
-            <input
-              type="radio"
-              name="prestamo"
-              value={p.id}
-              onChange={() => setPrestamoSeleccionado(p.id)}
-            />
-            Libro #{p.bookCopy.book.id}. {p.bookCopy.book.title} {p.bookCopy.book.author} {p.bookCopy.book.type} 
-            copia {p.bookCopy.id} 
-            fecha {p.fechaInicio} - {p.fechaFin}
-          </li>
-        ))}
-      </ul>
+      {prestamos.length > 0 && (
+        <div className="prestamo-lista">
+          <p><strong>Selecciona el préstamo a devolver:</strong></p>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Tipo</th>
+                <th>Copia</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+              </tr>
+            </thead>
+            <tbody>
+              {prestamos.map((p) => (
+                <tr key={p.id}>
+                  <td>
+                    <input
+                      type="radio"
+                      name="prestamo"
+                      value={p.id}
+                      onChange={() => setPrestamoSeleccionado(p.id)}
+                    />
+                  </td>
+                  <td>{p.bookCopy.book.title}</td>
+                  <td>{p.bookCopy.book.author}</td>
+                  <td>{p.bookCopy.book.type}</td>
+                  <td>{p.bookCopy.id}</td>
+                  <td>{p.fechaInicio}</td>
+                  <td>{p.fechaFin || '-'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
-      {mensaje && <p style={{ color: 'green' }}>{mensaje}</p>}
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {mensaje && <p className="mensaje-success">{mensaje}</p>}
+      {error && <p className="mensaje-error">{error}</p>}
     </div>
   );
 };

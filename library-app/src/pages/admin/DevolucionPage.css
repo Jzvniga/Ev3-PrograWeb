@@ -1,0 +1,88 @@
+.devolucion-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.devolucion-container h2 {
+  font-size: 26px;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+}
+
+.devolucion-form label {
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  display: block;
+}
+
+.devolucion-form input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.button-row {
+  display: flex;
+  gap: 10px;
+}
+
+.button-row button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  background-color: #0077cc;
+  color: white;
+}
+
+.button-row .devolver-btn {
+  background-color: #ff5555;
+}
+
+.button-row button:hover {
+  opacity: 0.9;
+}
+
+.prestamo-lista {
+  margin-top: 2rem;
+}
+
+.prestamo-lista table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.prestamo-lista th,
+.prestamo-lista td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.prestamo-lista th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.mensaje-success {
+  margin-top: 1rem;
+  color: green;
+  font-weight: bold;
+}
+
+.mensaje-error {
+  margin-top: 1rem;
+  color: red;
+  font-weight: bold;
+}
