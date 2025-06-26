@@ -96,6 +96,10 @@ src/
 │   └── bookingService.js
 ├── App.jsx
 └── main.jsx
+
+
+
+
 🧪 Casos de Prueba y Validación Manual
 Inicio de sesión ADMIN:
 ✔️ Ver menú completo
