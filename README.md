@@ -53,7 +53,7 @@ Ejecuta la app:
 bash
 Copiar
 Editar
-npm run dev
+npm start
 Asegúrate de que el backend esté corriendo en http://localhost:8087 y permita CORS desde http://localhost:3000.
 
 🔐 Autenticación y Autorización
