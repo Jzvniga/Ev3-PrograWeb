@@ -94,12 +94,12 @@ const DevolucionPage = () => {
                       onChange={() => setPrestamoSeleccionado(p.id)}
                     />
                   </td>
-                  <td>{p.bookCopy.book.title}</td>
-                  <td>{p.bookCopy.book.author}</td>
-                  <td>{p.bookCopy.book.type}</td>
-                  <td>{p.bookCopy.id}</td>
-                  <td>{p.fechaInicio}</td>
-                  <td>{p.fechaFin || '-'}</td>
+                    <td>{p.title ?? '—'}</td>
+                    <td>{p.author ?? '—'}</td>
+                    <td>{p.type ?? '—'}</td>
+                    <td>{p.copyId ?? '—'}</td>
+                  <td>{p.fechaInicio ?? '—'}</td>
+                  <td>{p.fechaFin ?? '-'}</td>
                 </tr>
               ))}
             </tbody>

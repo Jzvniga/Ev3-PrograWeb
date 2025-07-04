@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { crearPrestamo } from '../../services/bookingService';
 import { buscarLibroPorTitulo } from '../../services/bookService';
-import { getCopiasDisponiblesPorLibro } from '../../services/bookCopyService';
+import { getCopiasDisponibles } from '../../services/bookCopyService';
 import './PrestamoPage.css';
 
 const PrestamoPage = () => {
@@ -20,7 +20,7 @@ const PrestamoPage = () => {
 
     try {
       const libro = await buscarLibroPorTitulo(titulo, token);
-      const copiasDisponibles = await getCopiasDisponiblesPorLibro(libro.id, token);
+      const copiasDisponibles = await getCopiasDisponibles(libro.id, token);
       setCopias(copiasDisponibles);
     } catch (err) {
       console.error(err);
@@ -39,7 +39,7 @@ const PrestamoPage = () => {
     }
 
     try {
-      await crearPrestamo({ email, bookId: bookCopyId }, token);
+      await crearPrestamo({ email, bookId: copias.find(c => c.id === bookCopyId)?.bookId }, token);
       setMensaje('📚 Préstamo creado exitosamente');
       setEmail('');
       setTitulo('');
@@ -80,18 +80,18 @@ const PrestamoPage = () => {
         <div className="prestamo-copias">
           <p><strong>Selecciona una copia disponible:</strong></p>
           <ul>
-            {copias.map((copia) => (
-              <li key={copia.id}>
-                <label>
-                  <input
-                    type="radio"
-                    name="bookCopy"
-                    value={copia.id}
-                    onChange={() => setBookCopyId(copia.id)}
-                  />
-                  Libro #{copia.book.id} — {copia.book.title} — {copia.book.author} — {copia.book.type} (Copia #{copia.id})
-                </label>
-              </li>
+          {copias.map((copia) => (
+            <li key={copia.id}>
+              <label>
+                <input
+                  type="radio"
+                  name="bookCopy"
+                  value={copia.id}
+                  onChange={() => setBookCopyId(copia.id)}
+                />
+                Libro #{copia.bookId} — {copia.title} — {copia.author} — {copia.type} (Copia #{copia.id})
+              </label>
+            </li>
             ))}
           </ul>
         </div>

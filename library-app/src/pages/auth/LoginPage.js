@@ -16,7 +16,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const data = await loginService(email, password);
-      login(data);
+      login({ ...data, email });
 
       if (data.role === 'ADMIN') {
         navigate('/admin/crear-libro');
